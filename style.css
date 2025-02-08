@@ -42,3 +42,7 @@ h1 {
 input, select {
     width: 85%;
 };
+
+.end {
+    display: flex;
+}

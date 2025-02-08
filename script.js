@@ -1,10 +1,9 @@
 const container = document.querySelector('.container');
-
 const title = document.querySelector('.cards1');
 const author = document.querySelector('.cards2');
 const pages = document.querySelector('.cards3');
 const read = document.querySelector('.cards4');
-
+const deleteB = document.querySelector('.delete')
 const form = document.querySelector('#form')
 
 let myLibrary = [];
@@ -21,6 +20,7 @@ function Book(title, author, pages, read) {
 //Creates book and pushes to array from original constructor 
 Book.prototype.createBook = function () {
     let newBook = this.title + " " + this.author + " " + this.pages + " " + this.read;
+
     myLibrary.push(newBook);
     console.log(newBook);
     return;
@@ -34,47 +34,60 @@ form.addEventListener("submit",  (event) => {
     let pagesInput = document.querySelector("#pagesInput").value;
     let readInput = document.querySelector("#readInput").value;
 
-    //adding , after each input so multipe words can be entered for the split 
+    //adding ',' for the split so multipe words can be entered
     let book =  new Book(titleInput + ',',authorInput + ',',pagesInput + ',',readInput);
     book.createBook();
     displayBook();
     form.reset();
-    myLibrary = [];
+    // myLibrary = [];
 });
 
 
 //loop through array length, split each book in the array into words after the , and add each word to appropriate heading with appropriate class
 function displayBook() {
     //loop through array length, split each book in the array into words after the , and add each word to appropriate heading with appropriate class
+    const titleCreate = document.createElement("span");
+    const authorCreate = document.createElement("span");
+    const pageCreate = document.createElement("span");
+    const readCreate = document.createElement("span");
+    const deleteButton = document.createElement("button");
     for (i = 0; i < myLibrary.length; i++) {
-
+        
         word = myLibrary[i].split(",")
         console.log(word);
 
 
-        const titleCreate = document.createElement("span");
-        titleCreate.className = `cards + titleCard${i + 1}`;
-        //add classname 1 and upwards for cards
+        
+        titleCreate.className = `cards`;
         titleCreate.textContent = word[0];
-        title.appendChild(titleCreate);
+       
 
 
-        const authorCreate = document.createElement("span");
-        authorCreate.className = `cards + authorCard${i + 1}`;
+        
+        authorCreate.className = `cards`;
         authorCreate.textContent = word[1];
-        author.appendChild(authorCreate);
+       
 
-        const pageCreate = document.createElement("span");
-        pageCreate.className = `cards + authorCard${i + 1}`;
+        
+        pageCreate.className = `cards`;
         pageCreate.textContent = word[2];
-        pages.appendChild(pageCreate);
+        
 
-        const readCreate = document.createElement("span");
-        readCreate.className = `cards + authorCard${i + 1}`;
+        
+        readCreate.className = `cards end`;
         readCreate.textContent = word[3];
-        read.appendChild(readCreate);
+        
 
-    }
+        
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList = 'deleteButton cards';
+        
+        }
+        title.appendChild(titleCreate);
+        author.appendChild(authorCreate);
+        pages.appendChild(pageCreate);
+        read.appendChild(readCreate);
+        deleteB.appendChild(deleteButton);
 };
 
 
@@ -86,6 +99,3 @@ function displayBook() {
 // book1.createBook();
 // book2.createBook();
 
-
-
-displayBook();
