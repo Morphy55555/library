@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    max-width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.form-container {
+    display: flex;
+    margin: 5em;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+}
+.container {
+    display: flex;
+    margin: 5em;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+}
+.cards {
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    height: 150px;
+    width: 150px;
+}
+
+input, select {
+    width: 85%;
+};
