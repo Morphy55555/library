@@ -6,6 +6,8 @@ const read = document.querySelector('.cards4');
 const deleteB = document.querySelector('.delete')
 const form = document.querySelector('#form')
 
+
+
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -56,31 +58,26 @@ function displayBook() {
         word = myLibrary[i].split(",")
         console.log(word);
 
-
-        
         titleCreate.className = `cards`;
         titleCreate.textContent = word[0];
-       
+        //Setting the data-index to to correspond to each book input   
+        titleCreate.setAttribute('data-index', myLibrary.length);
 
-
-        
         authorCreate.className = `cards`;
         authorCreate.textContent = word[1];
-       
+        authorCreate.setAttribute('data-index', myLibrary.length);
 
-        
         pageCreate.className = `cards`;
         pageCreate.textContent = word[2];
-        
+        pageCreate.setAttribute('data-index', myLibrary.length);
 
-        
         readCreate.className = `cards end`;
         readCreate.textContent = word[3];
-        
-
-        
+        readCreate.setAttribute('data-index', myLibrary.length);
+    
         deleteButton.textContent = 'Delete';
         deleteButton.classList = 'deleteButton cards';
+        deleteButton.setAttribute('data-index', myLibrary.length);
         
         }
         title.appendChild(titleCreate);
@@ -90,6 +87,18 @@ function displayBook() {
         deleteB.appendChild(deleteButton);
 };
 
+deleteB.addEventListener('click', (e) => {
+    //on click we're getting the index of that delete button and thus the row it's on, selecting all data-index attributes with that index number, then a foreach loop to go through the node list and delete them all
+    const index = e.target.getAttribute('data-index');
+    const bookIndex = document.querySelectorAll(`[data-index="${index}"]`);
+    myLibrary.splice(index - 1, 1);
+    console.log(index);
+
+    bookIndex.forEach(index => {
+        index.remove();
+    });
+
+})
 
 
 
@@ -99,3 +108,4 @@ function displayBook() {
 // book1.createBook();
 // book2.createBook();
 
+// displayBook();
