@@ -3,8 +3,9 @@ const title = document.querySelector('.cards1');
 const author = document.querySelector('.cards2');
 const pages = document.querySelector('.cards3');
 const read = document.querySelector('.cards4');
-const deleteB = document.querySelector('.delete')
-const form = document.querySelector('#form')
+const deleteB = document.querySelector('.delete');
+const form = document.querySelector('#form');
+
 
 
 
@@ -27,6 +28,13 @@ Book.prototype.createBook = function () {
     console.log(newBook);
     return;
 };
+
+
+
+
+// document.querySelector('.read[data-index="3"]');
+//document.querySelectorAll('select > option')
+//dataindex3.textContent = 'read'
 
 form.addEventListener("submit",  (event) => {
     event.preventDefault();
@@ -60,18 +68,19 @@ function displayBook() {
 
         titleCreate.className = `cards`;
         titleCreate.textContent = word[0];
-        //Setting the data-index to to correspond to each book input   
+
+        //Setting the data-index to to correspond to each 'book' based of the array index number, (myLibrary.Length)
         titleCreate.setAttribute('data-index', myLibrary.length);
 
-        authorCreate.className = `cards`;
+        authorCreate.className = `cards author`;
         authorCreate.textContent = word[1];
         authorCreate.setAttribute('data-index', myLibrary.length);
 
-        pageCreate.className = `cards`;
+        pageCreate.className = `cards page`;
         pageCreate.textContent = word[2];
         pageCreate.setAttribute('data-index', myLibrary.length);
 
-        readCreate.className = `cards end`;
+        readCreate.className = `cards read`;
         readCreate.textContent = word[3];
         readCreate.setAttribute('data-index', myLibrary.length);
     
@@ -98,7 +107,28 @@ deleteB.addEventListener('click', (e) => {
         index.remove();
     });
 
-})
+});
+
+read.addEventListener('click', (e) => {
+    const readNodeList = document.querySelectorAll('.read');
+    console.log(readNodeList);
+
+    const index = e.target.getAttribute('data-index');
+    const actualIndex = index - 1;
+    console.log(actualIndex);
+    
+
+    console.log(readNodeList[0].textContent, readNodeList[1].textContent);
+    
+    if (readNodeList[index -1].innerHTML === " read") {
+        readNodeList[index -1].innerHTML = " not-read"
+    } else if (readNodeList[index-1].innerHTML === " not-read") {
+        readNodeList[index-1].innerHTML = " read"
+    };
+    
+});
+
+
 
 
 
