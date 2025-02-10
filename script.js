@@ -31,11 +31,6 @@ Book.prototype.createBook = function () {
 
 
 
-
-// document.querySelector('.read[data-index="3"]');
-//document.querySelectorAll('select > option')
-//dataindex3.textContent = 'read'
-
 form.addEventListener("submit",  (event) => {
     event.preventDefault();
     
@@ -49,13 +44,12 @@ form.addEventListener("submit",  (event) => {
     book.createBook();
     displayBook();
     form.reset();
-    // myLibrary = [];
 });
 
 
-//loop through array length, split each book in the array into words after the , and add each word to appropriate heading with appropriate class
+
 function displayBook() {
-    //loop through array length, split each book in the array into words after the , and add each word to appropriate heading with appropriate class
+    //loop through array length, split each into words after the , and add each word to appropriate heading with appropriate class
     const titleCreate = document.createElement("span");
     const authorCreate = document.createElement("span");
     const pageCreate = document.createElement("span");
@@ -109,31 +103,29 @@ deleteB.addEventListener('click', (e) => {
 
 });
 
+
+//Functionality for 'read' to be changed to 'not-read' and vice versa
 read.addEventListener('click', (e) => {
     const readNodeList = document.querySelectorAll('.read');
-    console.log(readNodeList);
-
     const index = e.target.getAttribute('data-index');
-    const actualIndex = index - 1;
-    console.log(actualIndex);
-    
-
-    console.log(readNodeList[0].textContent, readNodeList[1].textContent);
-    
-    if (readNodeList[index -1].innerHTML === " read") {
-        readNodeList[index -1].innerHTML = " not-read"
-    } else if (readNodeList[index-1].innerHTML === " not-read") {
-        readNodeList[index-1].innerHTML = " read"
+    if (readNodeList[index -1].innerHTML === " Read") {
+        readNodeList[index -1].innerHTML = " Unread";
+        readNodeList[index -1].style.color = 'red';
+    } else if (readNodeList[index-1].innerHTML === " Unread") {
+        readNodeList[index-1].innerHTML = " Read"
+        readNodeList[index -1].style.color = 'green';
     };
     
 });
 
+let defaultBook = new Book(`The Hitchhiker’s Guide to the Galaxy,`, "Douglas Adam's,", "208,", "Read");
+defaultBook.createBook();
+displayBook();
 
 
 
 
 
-// book1 = new Book(`title1 still Title1,`, "author1,", "pages1,", "read1")
 // book2 = new Book("title2,", "author2,", "pages2,", "read2,")
 // book1.createBook();
 // book2.createBook();
