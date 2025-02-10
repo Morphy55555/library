@@ -76,6 +76,9 @@ function displayBook() {
 
         readCreate.className = `cards read`;
         readCreate.textContent = word[3];
+        if (word[3] === ' Unread') {
+            readCreate.style.color = 'red';
+        };
         readCreate.setAttribute('data-index', myLibrary.length);
     
         deleteButton.textContent = 'Delete';
